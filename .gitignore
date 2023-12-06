@@ -1,0 +1,5 @@
+/arbitrum-publisher
+/nats.creds
+/start.sh
+.DS_Store
+.env
