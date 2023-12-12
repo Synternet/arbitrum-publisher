@@ -16,7 +16,7 @@ func (sn *NatsService) Publish(ctx context.Context, subject string, msg interfac
 
 func (sn *NatsService) PublishAsJSON(ctx context.Context, subject string, msg interface{}) error {
 	var err error
-	var json = jsoniter.ConfigCompatibleWithStandardLibrary
+	json := jsoniter.ConfigCompatibleWithStandardLibrary
 
 	jsonData, err := json.Marshal(msg)
 	if err != nil {

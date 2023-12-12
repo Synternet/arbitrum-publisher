@@ -69,7 +69,6 @@ func New(ctx context.Context, ipc *ipc.Ipc, s *svcn.NatsService, p string, n str
 }
 
 func (s *Service) run() {
-
 	defer close(s.ErrCh)
 	go s.subscribeNewHeaders()
 	go s.subscribeNewLog()
@@ -101,13 +100,13 @@ func (s *Service) run() {
 }
 
 func (s *Service) subscribeNewHeaders() {
+	log.Println("Subscribing to newHeader...")
 	subHeaders, err := s.ipc.EthClient.SubscribeNewHead(s.ctx, s.headers)
 	if err != nil {
-		s.ErrCh <- err
-
+		s.ErrCh <- fmt.Errorf("failed to subscribe to newHeader: %w", err)
 		return
 	}
-	log.Println("subscribed to newHeader")
+	log.Println("Subscribed to newHeader")
 	for {
 		select {
 		case errHeaders := <-subHeaders.Err():
@@ -133,19 +132,19 @@ func (s *Service) subscribeNewHeaders() {
 			}
 		}
 	}
-
 }
 
 func (s *Service) subscribeNewLog() {
+	log.Println("Subscribing to newLog...")
 	filter := ethereum.FilterQuery{
 		Addresses: []common.Address{}, // filter all addresses
 	}
 	subTxPool, err := s.ipc.EthClient.SubscribeFilterLogs(s.ctx, filter, s.logs)
 	if err != nil {
-		s.ErrCh <- err
+		s.ErrCh <- fmt.Errorf("failed to subscribe to newLog: %w", err)
 		return
 	}
-	log.Println("subscribed to newLog")
+	log.Println("Subscribed to newLog")
 	for {
 		select {
 		case errTxPool := <-subTxPool.Err():

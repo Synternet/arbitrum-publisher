@@ -193,6 +193,7 @@ func (c *Ipc) GetCheckToAddress(tx *types.Transaction) string {
 }
 
 func (c *Ipc) MonitorPendingTransactions() {
+	log.Println("Subscribing to txpool transactions...")
 	newTxsChannel := make(chan common.Hash)
 	sub, err := c.RpcClient.EthSubscribe(c.ctx, newTxsChannel, "newPendingTransactions")
 	defer sub.Unsubscribe()
@@ -201,22 +202,22 @@ func (c *Ipc) MonitorPendingTransactions() {
 		c.IpcErrorCh <- fmt.Errorf("error while subscribing: %s", err.Error())
 	}
 
-	log.Println("subscribed to txpool transactions")
+	log.Println("Subscribed to txpool transactions")
 
 	for {
 		select {
-		//Code block is executed when a new tx hash is piped to the channel
+		// Code block is executed when a new tx hash is piped to the channel
 		case transactionHash := <-newTxsChannel:
-			//Check duplication cache for tx hash and skip if already processed
+			// Check duplication cache for tx hash and skip if already processed
 			if !c.TxMessagesDup.Contains(transactionHash) {
 				c.TxMessagesDup.Add(transactionHash, true)
 			} else {
 				c.IpcErrorCh <- fmt.Errorf("transaction: %s already in cache. cache count: %d", transactionHash, c.TxMessagesDup.Len())
 				continue
 			}
-			//Get transaction object from hash by querying the client
+			// Get transaction object from hash by querying the client
 			tx, is_pending, _ := c.EthClient.TransactionByHash(context.Background(), transactionHash)
-			//If tx is valid and still unconfirmed
+			// If tx is valid and still unconfirmed
 			if is_pending {
 				// Skip Temporary inconsistency or Re-orgs and dropped transactions
 				if tx != nil {
@@ -293,7 +294,7 @@ func (c *Ipc) processTraceCallDetails(txHashes []string) {
 			log.Fatal(elem.Error)
 		}
 
-		results[i].TxHash  = txHashes[i]
+		results[i].TxHash = txHashes[i]
 		c.TxTraceCalls <- *results[i]
 	}
 }

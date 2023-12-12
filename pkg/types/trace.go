@@ -10,16 +10,15 @@ type TraceCallResponse struct {
 }
 
 type TraceCallLogs struct {
-	Pc      int    `json:"pc"`
-	Op      string `json:"op"`
-	Gas     int    `json:"gas"`
-	GasCost int    `json:"gasCost"`
-	Depth   int    `json:"depth"`
-	Error   any    `json:"error"`
-	Stack   []any  `json:"stack"`
-	Memory  any    `json:"memory"`
-	Storage struct {
-	} `json:"storage"`
+	Pc      int      `json:"pc"`
+	Op      string   `json:"op"`
+	Gas     int      `json:"gas"`
+	GasCost int      `json:"gasCost"`
+	Depth   int      `json:"depth"`
+	Error   any      `json:"error"`
+	Stack   []any    `json:"stack"`
+	Memory  any      `json:"memory"`
+	Storage struct{} `json:"storage"`
 }
 
 type TraceCallTransactionResponse struct {

@@ -19,7 +19,7 @@ func main() {
 	flagNatsUrls := flag.String("nats", "", "NATS server URLs (separated by comma)")
 	flagUserCredsSeed := flag.String("nats-nkey", "", "NATS NKey string")
 	flagPrefixOrg := flag.String("stream-prefix", "", "Streams prefix")
-  flagNodeNetwork := flag.String("stream-network-infix", "", "Arbitrum network stream infix, e.g.: mainnet, ")
+	flagNodeNetwork := flag.String("stream-network-infix", "", "Arbitrum network stream infix, e.g.: mainnet, ")
 	flag.Parse()
 
 	if *flagIpcPath == "" {
@@ -31,12 +31,12 @@ func main() {
 
 	opts := []nats.Option{}
 
-  flagUserCredsJWT, err := svcnats.CreateAppJwt(*flagUserCredsSeed)
-  if err != nil {
-    log.Fatalf("failed to create sub JWT: %v", err)
-  }
+	flagUserCredsJWT, err := svcnats.CreateAppJwt(*flagUserCredsSeed)
+	if err != nil {
+		log.Fatalf("failed to create sub JWT: %v", err)
+	}
 
-  opts = append(opts, nats.UserJWTAndSeed(flagUserCredsJWT, *flagUserCredsSeed))
+	opts = append(opts, nats.UserJWTAndSeed(flagUserCredsJWT, *flagUserCredsSeed))
 
 	svcn := svcnats.MustConnect(
 		svcnats.Config{
