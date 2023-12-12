@@ -54,8 +54,8 @@ type Service struct {
 	ErrCh    chan error
 }
 
-func New(ctx context.Context, ipc *ipc.Ipc, s *svcn.NatsService, p string, n string) *Service {
-	subjects := NewSubjectConstants(p, n)
+func New(ctx context.Context, ipc *ipc.Ipc, s *svcn.NatsService, p string, publisher string, n string) *Service {
+	subjects := NewSubjectConstants(p, publisher, n)
 	return &Service{
 		ctx:      ctx,
 		ipc:      ipc,
