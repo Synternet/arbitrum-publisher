@@ -35,6 +35,8 @@ See [Data Layer Quick Start](https://docs.syntropynet.com/build/data-layer/data-
 
 ## Docker
 
+### Build from source
+
 1. Build image.
 ```
 docker build -f ./docker/Dockerfile -t arbitrum-publisher .
@@ -43,6 +45,13 @@ docker build -f ./docker/Dockerfile -t arbitrum-publisher .
 2. Run container with passed environment variables.
 ```
 docker run -it --rm --env-file=.env arbitrum-publisher
+```
+
+### Prebuilt image
+
+Run container with passed environment variables.
+```
+docker run -it --rm --env-file=.env ghcr.io/syntropynet/arbitrum-publisher:latest
 ```
 
 ## Contributing
