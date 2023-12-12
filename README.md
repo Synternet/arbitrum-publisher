@@ -22,13 +22,14 @@ Running executable.
 
 Environment variables can be passed to docker container. Flags can be passed as executable arguments.
 
-| Environment variable | Flag                  | Description                                                                                                               |
-| -------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| SOCKET               | socket                | Arbitrum node URI to establish IPC/WebSocket connection, e.g.: `/tmp/arbvitrum.ipc`, `ws://a.b.c.d:8546`                  |
-| NATS                 | nats                  | NATS connection URL to Syntropy Data Layer broker, e.g.: `nats://e.f.g.h`                                                 |
-| NATS_NKEY            | nats-nkey             | NATS account NKEY, e.g.: `SA..SI` (58 chars)                                                                              |
-| STREAM_PREFIX        | stream-prefix         | Stream prefix, e.g.: `foo` prefix results in `foo.arbitrum.<tx,log-even,header,...>` stream subjects                      |
-| STREAM_NETWORK_INFIX | stream-network-infix  | (optional) Specify stream network infix, e.g.: `mainnet` prefix results in `<prefix>.arbitrum.mainnet.<tx,...>` subjects  |
+| Environment variable   | Flag                   | Description                                                                                                               |
+| ---------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| SOCKET                 | socket                 | Arbitrum node URI to establish IPC/WebSocket connection, e.g.: `/tmp/arbvitrum.ipc`, `ws://a.b.c.d:8546`                  |
+| NATS                   | nats                   | NATS connection URL to Syntropy Data Layer broker, e.g.: `nats://e.f.g.h`                                                 |
+| NATS_NKEY              | nats-nkey              | NATS account NKEY, e.g.: `SA..SI` (58 chars)                                                                              |
+| STREAM_PREFIX          | stream-prefix          | Stream prefix, e.g.: `foo` prefix results in `foo.arbitrum.<tx,log-even,header,...>` stream subjects. Stream prefix should be same as registered wallet (alias)[https://docs.syntropynet.com/build/data-layer/developer-portal/publish-streams#2-register-a-wallet---get-your-alias].                                     |
+| STREAM_PUBLISHER_INFIX | stream-publisher-infix | (optional) Stream publisher infix, e.g.: `foo` infix results in `prefix.foo.<tx,log-even,header,...>` stream subjects. Stream publisher infix should be same as registered publisher (alias)[https://docs.syntropynet.com/build/data-layer/developer-portal/publish-streams#3-register-a-publisher]. Default: `arbitrum`. |
+| STREAM_NETWORK_INFIX   | stream-network-infix   | (optional) Specify stream network infix, e.g.: `mainnet` prefix results in `<prefix>.arbitrum.mainnet.<tx,...>` subjects. Default: empty (`prefix.arbitrum.<tx,...>`). |
 
 See [Data Layer Quick Start](https://docs.syntropynet.com/build/data-layer/data-layer-quick-start) to learn more.
 

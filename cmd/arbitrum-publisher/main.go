@@ -19,7 +19,8 @@ func main() {
 	flagNatsUrls := flag.String("nats", "", "NATS server URLs (separated by comma)")
 	flagUserCredsSeed := flag.String("nats-nkey", "", "NATS NKey string")
 	flagPrefixOrg := flag.String("stream-prefix", "", "Streams prefix")
-	flagNodeNetwork := flag.String("stream-network-infix", "", "Arbitrum network stream infix, e.g.: mainnet, ")
+	flagPublisher := flag.String("stream-publisher-infix", "arbitrum", "Stream publisher infix")
+	flagNodeNetwork := flag.String("stream-network-infix", "", "Arbitrum network stream infix, e.g.: mainnet")
 	flag.Parse()
 
 	if *flagIpcPath == "" {
@@ -51,7 +52,7 @@ func main() {
 	}
 	log.Println("IPC socket connected.")
 
-	pubService := svc.New(ctx, service, svcn, *flagPrefixOrg, *flagNodeNetwork)
+	pubService := svc.New(ctx, service, svcn, *flagPrefixOrg, *flagPublisher, *flagNodeNetwork)
 	errCh := pubService.Run()
 
 	select {

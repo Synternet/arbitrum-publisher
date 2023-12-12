@@ -22,24 +22,24 @@ type SubjectConstants struct {
 	SteramedTraceCall  string
 }
 
-func NewSubjectConstants(prefix string, network string) *SubjectConstants {
+func NewSubjectConstants(prefix string, publisher string, network string) *SubjectConstants {
 	if network == "" {
 		return &SubjectConstants{
-			StreamedHeader:     fmt.Sprintf("%s.arbitrum.header", prefix),
-			StreamedBlock:      fmt.Sprintf("%s.arbitrum.block", prefix),
-			StreamedTx:         fmt.Sprintf("%s.arbitrum.tx", prefix),
-			StreamedTxLogEvent: fmt.Sprintf("%s.arbitrum.log-event", prefix),
-			StreamedTxMemPool:  fmt.Sprintf("%s.arbitrum.mempool", prefix),
-			SteramedTraceCall:  fmt.Sprintf("%s.arbitrum.trace_call", prefix),
+			StreamedHeader:     fmt.Sprintf("%s.%s.header", prefix, publisher),
+			StreamedBlock:      fmt.Sprintf("%s.%s.block", prefix, publisher),
+			StreamedTx:         fmt.Sprintf("%s.%s.tx", prefix, publisher),
+			StreamedTxLogEvent: fmt.Sprintf("%s.%s.log-event", prefix, publisher),
+			StreamedTxMemPool:  fmt.Sprintf("%s.%s.mempool", prefix, publisher),
+			SteramedTraceCall:  fmt.Sprintf("%s.%s.trace_call", prefix, publisher),
 		}
 	}
 	return &SubjectConstants{
-		StreamedHeader:     fmt.Sprintf("%s.arbitrum.%s.header", prefix, network),
-		StreamedBlock:      fmt.Sprintf("%s.arbitrum.%s.block", prefix, network),
-		StreamedTx:         fmt.Sprintf("%s.arbitrum.%s.tx", prefix, network),
-		StreamedTxLogEvent: fmt.Sprintf("%s.arbitrum.%s.log-event", prefix, network),
-		StreamedTxMemPool:  fmt.Sprintf("%s.arbitrum.%s.mempool", prefix, network),
-		SteramedTraceCall:  fmt.Sprintf("%s.arbitrum.%s.trace_call", prefix, network),
+		StreamedHeader:     fmt.Sprintf("%s.%s.%s.header", prefix, publisher, network),
+		StreamedBlock:      fmt.Sprintf("%s.%s.%s.block", prefix, publisher, network),
+		StreamedTx:         fmt.Sprintf("%s.%s.%s.tx", prefix, publisher, network),
+		StreamedTxLogEvent: fmt.Sprintf("%s.%s.%s.log-event", prefix, publisher, network),
+		StreamedTxMemPool:  fmt.Sprintf("%s.%s.%s.mempool", prefix, publisher, network),
+		SteramedTraceCall:  fmt.Sprintf("%s.%s.%s.trace_call", prefix, publisher, network),
 	}
 }
 

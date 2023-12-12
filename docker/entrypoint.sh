@@ -18,6 +18,10 @@ if [ ! -z "$STREAM_PREFIX" ]; then
   CMD="$CMD --stream-prefix $STREAM_PREFIX"
 fi
 
+if [ ! -z "$STREAM_PUBLISHER_INFIX" ]; then
+  CMD="$CMD --stream-publisher-infix $STREAM_PUBLISHER_INFIX"
+fi
+
 if [ ! -z "$STREAM_NETWORK_INFIX" ]; then
   CMD="$CMD --stream-network-infix $STREAM_NETWORK_INFIX"
 fi
