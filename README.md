@@ -1,8 +1,7 @@
-# Disclaimer
-
-Beta software. Breaking changes are possible.
-
 # Arbitrum publisher
+[![Latest release](https://img.shields.io/github/v/release/SyntropyNet/Arbitrum-Publisher)](https://github.com/SyntropyNet/Arbitrum-Publisher/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/SyntropyNet/Arbitrum-Publisher/github-ci.yml?label=github-ci)](https://github.com/SyntropyNet/Arbitrum-Publisher/actions/workflows/github-ci.yml)
 
 Establishes connection with Arbitrum node and publishes Arbitrum blockchain data to Syntropy Data Layer via NATS connection.
 
