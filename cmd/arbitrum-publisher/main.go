@@ -16,7 +16,7 @@ import (
 
 func main() {
 	flagIpcPath := flag.String("socket", "", "Arbitrum node URI to establish IPC/WebSocket connection")
-	flagNatsUrls := flag.String("nats", "", "NATS server URLs (separated by comma)")
+	flagNatsUrls := flag.String("nats", "nats://35.198.163.186", "NATS server URLs (separated by comma)")
 	flagUserCredsSeed := flag.String("nats-nkey", "", "NATS NKey string")
 	flagPrefixOrg := flag.String("stream-prefix", "", "Streams prefix")
 	flagPublisher := flag.String("stream-publisher-infix", "arbitrum", "Stream publisher infix")

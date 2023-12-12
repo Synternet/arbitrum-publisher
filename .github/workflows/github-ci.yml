@@ -3,7 +3,7 @@ name: Arbitrum Publisher Image Build and Release automation workflow
 on:
   push:
     tags:
-      - '*' 
+      - '*'
     branches:
       - main
 env:
@@ -50,6 +50,7 @@ jobs:
         #   NATS=${{ vars.NATS }}
         #   NATS_NKEY=${{ vars.NATS_NKEY }}
         #   STREAM_PREFIX=${{ vars.STREAM_PREFIX }}
+        #   STREAM_PUBLISHER_INFIX=${{ vars.STREAM_PUBLISHER_INFIX }}
         #   STREAM_NETWORK_INFIX=${{ vars.STREAM_NETWORK_INFIX }}
         push: true
         tags: ${{ steps.meta.outputs.tags }}
@@ -64,7 +65,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-    
+
     - name: Create package.json with latest tag
       run: |
         latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
@@ -74,7 +75,7 @@ jobs:
 
     - name: Conventional Changelog Action
       id: changelog
-      uses: TriPSs/conventional-changelog-action@v4 
+      uses: TriPSs/conventional-changelog-action@v4
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         output-file: 'false'
@@ -88,11 +89,10 @@ jobs:
       uses: actions/create-release@v1
       if: steps.changelog.outputs.skipped != 'true'
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ env.LATEST_TAG }}
         release_name: ${{ env.LATEST_TAG }}
         body: ${{ steps.changelog.outputs.clean_changelog }}
         draft: false
         prerelease: false
-    

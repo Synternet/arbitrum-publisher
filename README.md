@@ -14,7 +14,7 @@ make build
 
 Running executable.
 ```bash
-./arbitrum-publisher --socket /arbitrum.ipc --nats nats://34.107.87.29 --stream-prefix my-org --nats-nkey SA..BC
+./arbitrum-publisher --socket /arbitrum.ipc --nats nats://35.198.163.186 --stream-prefix my-org --nats-nkey SA..BC
 ```
 
 ### Environment variables and flags {#env-flags}
@@ -24,8 +24,8 @@ Environment variables can be passed to docker container. Flags can be passed as 
 | Environment variable   | Flag                   | Description                                                                                                               |
 | ---------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | SOCKET                 | socket                 | Arbitrum node URI to establish IPC/WebSocket connection, e.g.: `/tmp/arbvitrum.ipc`, `ws://a.b.c.d:8546`                  |
-| NATS                   | nats                   | NATS connection URL to Syntropy Data Layer broker, e.g.: `nats://e.f.g.h`                                                 |
-| NATS_NKEY              | nats-nkey              | NATS account NKEY, e.g.: `SA..SI` (58 chars)                                                                              |
+| NATS                   | nats                   | NATS connection URL to Syntropy Data Layer broker, e.g.: `nats://e.f.g.h`. URL to (broker)[https://docs.syntropynet.com/docs/actors/broker]. Default value is set to testnet broker: `nats://35.198.163.186`.                                                                                                                      |
+| NATS_NKEY              | nats-nkey              | NATS account NKEY a.k.a access token, e.g.: `SA..SI` (58 chars). One access token for each publisher, see [here](https://docs.syntropynet.com/build/data-layer/developer-portal/publish-streams#7-get-the-access-token).                                                                                                        |
 | STREAM_PREFIX          | stream-prefix          | Stream prefix, e.g.: `foo` prefix results in `foo.arbitrum.<tx,log-even,header,...>` stream subjects. Stream prefix should be same as registered wallet [alias](https://docs.syntropynet.com/build/data-layer/developer-portal/publish-streams#2-register-a-wallet---get-your-alias).                                     |
 | STREAM_PUBLISHER_INFIX | stream-publisher-infix | (optional) Stream publisher infix, e.g.: `foo` infix results in `prefix.foo.<tx,log-even,header,...>` stream subjects. Stream publisher infix should be same as registered publisher [alias](https://docs.syntropynet.com/build/data-layer/developer-portal/publish-streams#3-register-a-publisher). Default: `arbitrum`. |
 | STREAM_NETWORK_INFIX   | stream-network-infix   | (optional) Specify stream network infix, e.g.: `mainnet` prefix results in `<prefix>.arbitrum.mainnet.<tx,...>` subjects. Default: empty (`prefix.arbitrum.<tx,...>`). |
