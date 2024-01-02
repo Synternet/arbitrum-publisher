@@ -53,6 +53,25 @@ Run container with passed environment variables.
 docker run -it --rm --env-file=.env ghcr.io/syntropynet/arbitrum-publisher:latest
 ```
 
+### Docker Compose
+
+`docker.compose.yml` file.
+```
+version: '3.8'
+
+services:
+  arbitrum-publisher:
+    image: ghcr.io/syntropynet/arbitrum-publisher:latest
+    environment:
+      - SOCKET=/tmp/arbitrum.ipc
+      - NATS=nats://35.198.163.186
+      - NATS_NKEY=secret-access-token
+      - STREAM_PREFIX=some-org
+      - STREAM_PUBLISHER_INFIX=arbitrum
+    volumes:
+      - /tmp/arbitrum.ipc:/tmp/arbitrum.ipc:ro
+```
+
 ## Contributing
 
 We welcome contributions from the community. Whether it's a bug report, a new feature, or a code fix, your input is valued and appreciated.
