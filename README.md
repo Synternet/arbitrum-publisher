@@ -55,7 +55,7 @@ docker run -it --rm --env-file=.env ghcr.io/syntropynet/arbitrum-publisher:lates
 
 ### Docker Compose
 
-`docker.compose.yml` file.
+`docker-compose.yml` file.
 ```
 version: '3.8'
 
