@@ -285,13 +285,13 @@ func (c *Ipc) processTraceCallDetails(txHashes []string) {
 	// Send the batched requests
 	err := c.RpcClient.BatchCallContext(c.ctx, batch)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("batch call error: %v", err)
 	}
 
 	// Process the responses
 	for i, elem := range batch {
 		if elem.Error != nil {
-			log.Fatal(elem.Error)
+			log.Fatalf("batch processing error: %v", elem.Error)
 		}
 
 		results[i].TxHash = txHashes[i]

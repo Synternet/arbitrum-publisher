@@ -48,7 +48,7 @@ func main() {
 
 	service, errSvc := ipc.NewClient(ctx, *flagIpcPath)
 	if errSvc != nil {
-		log.Fatalf("Starting service error: %s", errSvc.Error())
+		log.Fatalf("service startup error: %s", errSvc.Error())
 	}
 	log.Println("IPC socket connected.")
 
